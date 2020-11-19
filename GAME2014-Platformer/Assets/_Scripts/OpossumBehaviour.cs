@@ -85,6 +85,7 @@ public class OpossumBehaviour : MonoBehaviour
         if (isGroundedAhead)
         {
             m_rigidbody2D.AddForce(Vector2.left * runForce * Time.deltaTime * transform.localScale.x);
+           
             if(onRamp)
             { 
                 if(rampDirection == RampDirection.UP)
@@ -102,6 +103,7 @@ public class OpossumBehaviour : MonoBehaviour
             {
                 StartCoroutine(Normalize());
             }
+            
             m_rigidbody2D.velocity *= 0.90f;
         }
 
@@ -115,7 +117,7 @@ public class OpossumBehaviour : MonoBehaviour
     IEnumerator Rotate()
     {
         yield return new WaitForSeconds(0.05f);
-        transform.rotation = Quaternion.Euler(0.0f, 0.0f, -26.0f);
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, -45.0f);
 
     }
 
