@@ -8,6 +8,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
 
     public Joystick joystick;
+    public int score;
     public float joystickHorizontalSensitivity;
     public float joystickVerticalSensitivity;
     public float horizontalForce;
@@ -37,6 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Text saveText;
     public Text lifeText;
+    public Text scoreText;
 
     private bool dispText;
     private bool victory;
@@ -58,33 +60,14 @@ public class PlayerBehaviour : MonoBehaviour
         life = 3;
         victory = false;
         isPaused = false;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown("p"))
-        {
-            if (Time.timeScale == 1)
-            {
-                Time.timeScale = 0f;
-                Debug.Log("Paused");
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                Debug.Log("Resumed");
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        score = 0;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
 
         lifeText.text = "Life : " + life;
+        scoreText.text = "Score : " + score;
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
@@ -303,6 +286,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 m_rigidBody2D.AddForce(Vector2.up * verticalForce / 2.0f);
                 other.gameObject.SetActive(false);
+                score = score + 100;
             }
             else
             {
